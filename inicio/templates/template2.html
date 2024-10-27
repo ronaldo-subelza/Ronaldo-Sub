@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        22222222
+    </h1>
+    <h2>
+        {{fecha_actual}}
+    </h2>
+    <p>
+        Listado
+    </p>
+    <ul>
+        {%for num in numeros%}
+        {% if num > 5 %}        
+        <li>{{num}}</li>
+        {% elif num == 5 %}
+        <li>soy el unico 5</li>
+        {% else %}
+        <li>soy menor a 5</li>
+        {% endif %}
+        {%endfor%}        
+    </ul>
+</body>
+</html>
