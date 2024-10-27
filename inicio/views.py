@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template import Template, Context, loader
 from datetime import datetime
 from django.shortcuts import render
+from .models import Ropa
 
 def inicio (request):
     return HttpResponse('<h1>Inicio<h1/>')
@@ -43,6 +44,10 @@ def template2(request):
     
     return render(request,'template2.html',datos)
     
+def Crear_Ropa(request):
+    ropa = Ropa(prenda='pantalon', marca='nike', talla=3)
+    ropa.save()
+    return render(request, 'Crear_Ropa.html', {})
     
     
     
