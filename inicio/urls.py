@@ -1,6 +1,7 @@
 from proyecto_3.urls import path
 from .views import inicio, datos, template1, template2, Crear_Ropa, Buscar_Ropa
 
+app_name = 'inicio'
 
 urlpatterns = [
     path('', inicio),

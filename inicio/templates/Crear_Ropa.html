@@ -1,13 +1,15 @@
 
-{% extends "inicio/index.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
+{% extends "index.html" %}
+
+{% block title_head %}
+Crear Ropa
+{% endblock title_head %}
+
+{% block h1_header %}Crear Ropa{% endblock h1_header %}
+
+{% block main %}
 <body>
     se creo {{ropa.id}} {{ropa.prenda}} xd
     <form method="post">
@@ -28,6 +30,5 @@
     <button type='submit'> 
         CREAR ROPA
     </button>
-    
-</body>
-</html>
+    <form action={% url 'Crear_Ropa' %}></form>
+    {% endblock main %}
