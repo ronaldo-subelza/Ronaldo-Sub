@@ -7,5 +7,5 @@ urlpatterns = [
     path('datos1/<nombre>/', datos),
     path('template1/', template1),
     path('template2/', template2),
-    path('Ropa/', Crear_Ropa)
+    path('Ropa/<prenda>/<marca>/<talla>/', Crear_Ropa)
 ]

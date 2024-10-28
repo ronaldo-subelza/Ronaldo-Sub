@@ -3,9 +3,11 @@ from django.template import Template, Context, loader
 from datetime import datetime
 from django.shortcuts import render
 from .models import Ropa
+from .forms import Ropaformu
 
 def inicio (request):
-    return HttpResponse('<h1>Inicio<h1/>')
+    # return HttpResponse('<h1>Inicio<h1/>')
+    return render(request, 'index.html')
 
 def datos(request, nombre):   
     nombres = nombre.upper()   
@@ -45,9 +47,11 @@ def template2(request):
     return render(request,'template2.html',datos)
     
 def Crear_Ropa(request):
-    ropa = Ropa(prenda='pantalon', marca='nike', talla=3)
-    ropa.save()
-    return render(request, 'Crear_Ropa.html', {})
-    
+    # ropa = Ropa(prenda=prenda, marca=marca, talla=talla)
+    # ropa.save()
+    # return render(request, 'Crear_Ropa.html', {'ropa' : ropa})
+    form = Ropaformu(request.POST)
+    form.save()
+    return render(request, 'Crear_Ropa.html', {'ropa' : form})
     
     
