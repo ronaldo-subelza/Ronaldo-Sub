@@ -1,0 +1,41 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Buscar Ropa</h1>
+    <form method="get">
+        {% csrf_token %}
+        
+        <label for="id_prenda">Prenda:</label>
+        <input type="text" name="prenda" id="id_prenda" placeholder="Ingrese prenda a buscar">
+        
+        <label for="id_marca">Marca:</label>
+        <input type="text" name="marca" id="id_marca" placeholder="Ingrese marca a buscar">
+        
+        <label for="id_talla">Talla:</label>
+        <input type="text" name="talla" id="id_talla" placeholder="Ingrese talla a buscar">
+        
+        <button type='submit'> 
+            BUSCAR ROPA
+        </button>
+    </form>
+
+    <h2>Resultado de Búsqueda</h2>
+    {% if resultados %}
+        <ul>
+        {% for resultado in resultados %}
+            <li>ID: {{ resultado.id }}, Prenda: {{ resultado.prenda }}, Marca: {{ resultado.marca }}, Talla: {{ resultado.talla }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+</body>
+</html>

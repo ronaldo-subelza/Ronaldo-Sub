@@ -8,10 +8,23 @@
 <body>
     se creo {{ropa.id}} {{ropa.prenda}} xd
     <form method="post">
-        {{form.as_p}}
-        <button type='submit'> 
-            CREAR ROPA
-        </button>
-    </form>
+        {% csrf_token %}
+    
+    <label for="id_prenda">Prenda:</label>
+    {{ form.prenda }}  
+    {{ form.prenda.errors }}
+
+    <label for="id_marca">Marca:</label>
+    {{ form.marca }}  
+    {{ form.marca.errors }}
+
+    <label for="id_talla">Talla:</label>
+    {{ form.talla }}  
+    {{ form.talla.errors }}
+
+    <button type='submit'> 
+        CREAR ROPA
+    </button>
+    
 </body>
 </html>
