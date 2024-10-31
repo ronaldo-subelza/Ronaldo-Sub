@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>
-        22222222
-    </h1>
+{% extends "base.html" %}
+
+{% block tittle_head %}
+template 2
+{% endblock tittle_head %}
+
+{% block h1_masthead %}
+<div class="masthead-heading text-uppercase">soy template 2</div> 
+{% endblock h1_masthead %}
+
+
+{% block main %}
     <h2>
         {{fecha_actual}}
     </h2>
@@ -26,5 +27,7 @@
         {% endif %}
         {%endfor%}        
     </ul>
+
+{% endblock main %}
 </body>
 </html>

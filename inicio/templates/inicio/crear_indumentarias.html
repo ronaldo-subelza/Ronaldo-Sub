@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block tittle_head %}
+crear ropa
+{% endblock tittle_head %}
+
+{% block h1_masthead %}
+<div class="masthead-heading text-uppercase">Crear ropa</div> 
+{% endblock h1_masthead %}
+{% block main %}
+<form action={% url "inicio:crear_indumentarias" %} method="POST">
+    {% csrf_token %}
+
+
+
+    {% comment %} <p>
+        Prenda:
+        <input type="text" name='prenda'>
+    </p>
+    <p>
+        Marca:
+        <input type="text" name="marca">
+    </p>
+    <p>
+        Talla:
+        <input type="number" name="talla">
+    </p> 
+    <button>Enviar</button>
+    {% endcomment %}
+    {{form}}
+
+    <input type="submit" value"Enviar">
+    
+    
+
+</form>
+{% endblock main %}

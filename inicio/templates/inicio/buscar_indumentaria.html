@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block tittle_head %}
+buscar ropa
+{% endblock tittle_head %}
+
+{% block h1_masthead %}
+<div class="masthead-heading text-uppercase">Buscar ropa</div> 
+{% endblock h1_masthead %}
+
+{% block main %}
+<form action={% url "inicio:buscar_indumentaria" %}>
+    {{form}}
+    <input type="submit">
+</form>    
+{% if ropas %}
+<ul>
+    {% for ropa in ropas %}
+    <li>{{ropa}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p> No hay ropas registradas </p>
+{% endif %}
+
+{% endblock main %}

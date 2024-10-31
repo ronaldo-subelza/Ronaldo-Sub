@@ -93,8 +93,6 @@
 
 body {
   margin: 0;
-  width: 100vw;
-  height: 100vh;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
@@ -10945,8 +10943,6 @@ p {
   }
 }
 header.masthead {
-  width: 100vw;
-  height: 100vh;
   padding-top: 10.5rem;
   padding-bottom: 6rem;
   text-align: center;

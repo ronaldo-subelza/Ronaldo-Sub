@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.template import Template, Context, loader
 from datetime import datetime
-from django.shortcuts import render
-from .models import Ropa
-from .forms import Ropaformu, RopaSearch
+from django.shortcuts import render, redirect
+from inicio.models import Ropa
+from .forms import CrearIndumentariaFormulario, BuscarIndumentariaFormulario
+
 
 
 def inicio (request):
@@ -47,42 +48,43 @@ def template2(request):
     
     return render(request,'template2.html',datos)
     
-# def Crear_Ropa(request):
-#     # ropa = Ropa(prenda=prenda, marca=marca, talla=talla)
-#     # ropa.save()
-#     # return render(request, 'Crear_Ropa.html', {'ropa' : ropa})
-#     form = Ropaformu(request.POST)
-#     form.save()
-#     return render(request, 'Crear_Ropa.html', {'ropa' : form})
 
-def Crear_Ropa(request):
-    if request.method == 'POST':
-        form = Ropaformu(request.POST)  
-        if form.is_valid(): 
-            ropa = form.save()
-            return render(request, 'Crear_Ropa.html', {'ropa': ropa})
+
+def crear_indumentaria(request,prenda,marca,talla):
+    ropa = Ropa(prenda=prenda,marca=marca,talla=talla)
+    ropa.save()
+    return render(request,'crear_indumentaria.html',{'ropa':ropa})
+
+def buscar_indumentaria(request):
+    
+    formulario = BuscarIndumentariaFormulario(request.GET)
+    if formulario.is_valid():
+        prenda = formulario.cleaned_data.get('prenda')
+        ropas = Ropa.objects.filter(prenda__icontains=prenda)
     else:
-        form = Ropaformu()
+        ropas = Ropa.objects.all()
+    
+    return render(request,'inicio/buscar_indumentaria.html',{'ropas': ropas, 'form':formulario })
 
-    return render(request, 'index.html', {'form': form})  
-
-
-def Buscar_Ropa(request):
-    resultados = [] 
-    form = RopaSearch(request.GET or None)  
-    if request.method == 'GET':
-        if form.is_valid():
-            prenda = form.cleaned_data.get('prenda')
-            marca = form.cleaned_data.get('marca')
-            talla = form.cleaned_data.get('talla')
-            
-            resultados = Ropa.objects.all()
-            if prenda:
-                resultados = resultados.filter(prenda__icontains=prenda)
-            if marca:
-                resultados = resultados.filter(marca__icontains=marca)
-            if talla:
-                resultados = resultados.filter(talla__icontains=talla) 
-                
-    print(resultados, "Este es el puto resultado") 
-    return render(request, 'index.html', {'form': form, 'resultados': resultados})  
+def crear_indumentarias(request):
+    
+    # print('Request', request)
+    # print('GET', request.GET)
+    # print('POST', request.POST)
+    
+    formulario = CrearIndumentariaFormulario()
+    
+    if request.method == 'POST':
+        # ropa = Ropa(prenda=request.POST.get("prenda"),marca=request.POST.get('marca'),talla=request.POST.get('talla'))
+        # ropa.save()
+        
+        
+        formulario = CrearIndumentariaFormulario(request.POST)
+        if formulario.is_valid():
+            data=formulario.cleaned_data
+            ropa = Ropa(prenda=data.get("prenda"),marca=data.get('marca'),talla=data.get('talla'))
+            ropa.save()                
+            return redirect('inicio:buscar_indumentaria')
+    
+    return render(request,'inicio/crear_indumentarias.html',{'form':formulario})
+     
